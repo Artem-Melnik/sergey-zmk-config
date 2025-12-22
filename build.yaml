@@ -19,7 +19,7 @@
 #
 ---
 include:
-  - board: nrfmicro&#x2F;nrf52840@1.3.0
+  - board: nrfmicro/nrf52840@1.3.0
     shield: sofle_left
-  - board: nrfmicro&#x2F;nrf52840@1.3.0
+  - board: nrfmicro/nrf52840@1.3.0
     shield: sofle_right
