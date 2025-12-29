@@ -27,6 +27,37 @@
         };
     };
 
+    macros {
+        Shift_Del: Shift_Del {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press>, <&kp DEL>, <&macro_release>;
+
+            label = "SHIFT_DEL";
+        };
+    };
+
+    behaviors {
+        Shift_Del_Morph: Shift_Del_Morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SHIFT_DEL_MORPH";
+            bindings = <&kp BACKSPACE>, <&Shift_Del_Morph>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        Alt_F4_Morph: Alt_F4_Morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ALT_F4_MORPH";
+            bindings = <&kp Q>, <&kp F4>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -39,11 +70,11 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp ESC    &kp N1  &kp N2    &kp N3     &kp N4    &kp N5                                   &kp N6     &kp N7    &kp N8     &kp N9    &kp N0    &kp BSPC
-&kp TAB    &kp Q   &kp W     &kp E      &kp R     &kp T                                    &kp Y      &kp U     &kp I      &kp O     &kp P     &kp MINUS
-&kp LSHFT  &kp A   &kp S     &kp D      &kp F     &kp G                                    &kp H      &kp J     &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z   &kp X     &kp C      &kp V     &kp B     &kp C_MUTE    &rgb_ug RGB_TOG  &kp N      &kp M     &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-                   &kp LGUI  &kp LCTRL  &kp LALT  &kp LGUI  &kp RET       &kp SPACE        &kp RCTRL  &kp RALT  &mo 2      &kp RGUI
+&kp ESC    &kp N1         &kp N2  &kp N3     &kp N4    &kp N5                                   &kp N6     &kp N7    &kp N8     &kp N9   &kp N0    &Shift_Del_Morph
+&kp TAB    &Alt_F4_Morph  &kp W   &kp E      &kp R     &kp T                                    &kp Y      &kp U     &kp I      &kp O    &kp P     &kp MINUS
+&kp LSHFT  &kp A          &kp S   &kp D      &kp F     &kp G                                    &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z          &kp X   &kp C      &kp V     &kp B     &kp C_MUTE    &rgb_ug RGB_TOG  &kp N      &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
+                          &mo 1   &kp LCTRL  &kp LALT  &kp LGUI  &kp RET       &kp SPACE        &kp RCTRL  &kp RALT  &mo 2      &mo 3
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -78,11 +109,11 @@
             //                |      |       |       |      |      |  |      |      |      |       |      |
 
             bindings = <
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &kp PAGE_UP     &trans          &trans        &trans           &trans   &trans
-&trans       &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                          &kp PAGE_DOWN   &trans          &trans        &trans           &kp N0   &trans
-&trans       &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &kp DEL  &kp BSPC
-&bootloader  &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &trans  &trans          &trans          &trans        &trans           &trans   &bootloader
-                           &trans        &trans        &trans        &trans        &trans    &trans  &trans          &trans          &trans        &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &kp PAGE_UP     &trans          &trans        &trans           &trans   &trans
+&trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                          &kp PAGE_DOWN   &trans          &trans        &trans           &kp N0   &trans
+&trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &kp DEL  &kp BSPC
+&trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &trans  &trans          &trans          &trans        &trans           &trans   &trans
+                          &bootloader   &trans        &trans        &trans        &trans    &trans  &trans          &trans          &trans        &bootloader
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
