@@ -114,7 +114,7 @@
 &trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                          &kp PAGE_DOWN   &trans          &trans        &trans           &kp N0   &trans
 &trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &kp DEL  &kp BSPC
 &trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &trans  &trans          &trans          &trans        &trans           &trans   &trans
-                          &bootloader   &trans        &trans        &trans        &trans    &trans  &trans          &trans          &trans        &bootloader
+                          &bootloader   &trans        &trans        &trans        &trans    &trans  &trans          &trans          &trans        &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
